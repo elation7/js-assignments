@@ -248,8 +248,8 @@ function roundToPowerOfTen(num, pow) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    return (typeof value == "number" || Number.isNaN(def) || Number.parseFloat(value))
-        ? value:def;
+    return !Number.isNaN(Number.parseFloat(value)) && isFinite(value)
+        ? Number.parseFloat(value):def;
 }
 
 module.exports = {
