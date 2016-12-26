@@ -128,8 +128,8 @@ function angleBetweenClockHands(date) {
     }
     var angleMinutes = 6 * minutes;
     var angledelta = Math.abs(angleHours - angleMinutes);
-    var angleInRad = Math.PI * angledelta / 360;
-    return angleInRad;
+    var angleInRad = Math.PI / 180 * angledelta;
+    return  angledelta;
 }
 
 
