@@ -219,7 +219,7 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    return  (isStartIncluded ? '[' : '(') + ((a < b) ? a : b) + ', ' + ((a < b) ? b : a) + (isEndIncluded ? ']' : ')');
 }
 
 
@@ -236,7 +236,11 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+    var str2 = '';
+    for (var i = str.length - 1; i >=0; i--) {
+        str2 += str.charAt(i);
+    }
+    return str2;
 }
 
 
@@ -253,7 +257,12 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+    num = num + '';
+    var str2 = '';
+    for (var i = num.length - 1; i >= 0; i--) {
+        str2 += num.charAt(i);
+    }
+    return parseInt(str2);
 }
 
 
@@ -297,7 +306,20 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    var sum = 0;
+    while(1) {
+        while (num > 0) {
+            sum +=num % 10;
+            num = Math.floor(num /10);
+        }
+        if(sum > 9) {
+            num = sum;
+            sum = 0;
+        }
+        else break;
+
+    }
+    return sum;
 }
 
 
@@ -323,7 +345,23 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
+    var openingBrackets = ['{', '[', '(', '<'];
+    var closingBrackets = ['}', ']', ')', '>'];
+    var current;
+    var stack =[];
+    for (var i = 0;  i < str.length; i++) {
+        current = str.charAt(i);
+        if (closingBrackets.indexOf(current)!= -1) {
+            if (stack.pop() != openingBrackets[closingBrackets.indexOf(current)]) {
+                return false;
+            }
+        }
+        else {
+            stack.push(current);
+        }
+    }
+
+    return stack.length == 0;
 }
 
 
